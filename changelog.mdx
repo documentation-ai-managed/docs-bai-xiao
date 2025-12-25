@@ -1,0 +1,139 @@
+---
+title: Changelog
+description: Track the latest updates, improvements, and new features released for Bai Xiao.
+---
+
+## Recent Updates
+
+Stay informed about all changes to bai xiao. You receive notifications for major releases and breaking changes via email if subscribed. Review the details below for migration guides and release notes.
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Added real-time collaboration support for shared documents
+- Introduced dashboard analytics with customizable widgets
+
+## Improvements
+
+- Enhanced API response times by `>30%` under high load
+- Optimized mobile responsiveness for better touch interactions
+
+## Bug Fixes
+
+- Fixed authentication token refresh loop in long sessions
+- Resolved file upload failures with large attachments (`>100MB`)
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- Integrated webhook support for custom event notifications
+- Added multi-language UI with auto-detection
+
+## Bug Fixes
+
+- Corrected search indexing delays affecting recent uploads
+- Patched cross-site scripting vulnerability in user profiles
+
+<CodeGroup tabs="JavaScript,Python">
+```javascript
+// Updated webhook handler example
+app.post('/webhook', (req, res) => {
+  const event = req.body.event;
+  if (event === 'document.updated') {
+    // Handle update
+  }
+  res.status(200).send('OK');
+});
+```
+```python
+# Updated webhook handler example
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    event = request.json['event']
+    if event == 'document.updated':
+        # Handle update
+        pass
+    return 'OK', 200
+```
+</CodeGroup>
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["breaking", "feature"]}>
+
+## Breaking Changes
+
+- Migrated from v0.x API endpoints; update your `{API_KEY}` usage
+
+## New Features
+
+- Core document management API launched
+- User authentication with OAuth 2.0 support
+
+<Callout kind="alert">
+Review the [migration guide](/quickstart#migration) before upgrading from v0.x.
+</Callout>
+
+</Update>
+
+## Upcoming Features
+
+Get a preview of what's coming next to bai xiao. These enhancements focus on scalability and user experience.
+
+<Columns cols={3}>
+  <Card title="AI-Powered Search" icon="search" href="/concepts/ai-features">
+    Semantic search across all your documents with natural language queries.
+  </Card>
+  <Card title="Advanced Permissions" icon="shield" href="/authentication#permissions">
+    Granular role-based access control for teams.
+  </Card>
+  <Card title="Export to PDF" icon="file-text" href="/guides/export">
+    One-click exports with custom branding options.
+  </Card>
+</Columns>
+
+## How to Stay Updated
+
+Follow these steps to ensure you never miss a release.
+
+<Steps>
+  <Step title="Subscribe to Notifications" icon="bell">
+    Visit your account settings at `https://dashboard.baixiao.com/settings/notifications` and enable changelog emails.
+  </Step>
+  <Step title="Check GitHub Releases" icon="github">
+    Follow the repository for automated release alerts.
+  </Step>
+  <Step title="API Version Pinning" icon="code">
+    Pin your client to a specific version using the `{version}` parameter in requests.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+Enable beta features in your dashboard to test upcoming changes early. Report issues via the feedback form.
+</Callout>
+
+<Expandable title="Detailed Migration Guide for v1.2.0" default-open="false">
+
+If upgrading from v1.1.0, update your webhook endpoints:
+
+````javascript
+// Before (v1.1.0)
+fetch('https://api.baixiao.com/v1/webhooks', {
+  headers: { Authorization: `Bearer ${YOUR_TOKEN}` }
+});
+
+// After (v1.2.0)
+fetch('https://api.baixiao.com/v1.2/webhooks/events', {
+  headers: { Authorization: `Bearer ${YOUR_TOKEN}` }
+});
+````
+
+</Expandable>
